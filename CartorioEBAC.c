@@ -13,7 +13,7 @@ int registrar() //função responsavel por cadastrar
 	    char cargo[40];
 	    //final criação variavel
 		
-		printf("Digite o CPF a ser cadastrado: "); // coletando informação
+		printf("Digite o CPF a ser cadastrado: \n "); // coletando informação
 		scanf("%s", cpf);//%s refere-se a string
 		
 		strcpy(arquivo, cpf); //responsavel por copiar o valor das strings
@@ -27,7 +27,7 @@ int registrar() //função responsavel por cadastrar
 		fprintf(file,",");
 		fclose(file);
 		
-		printf("Digite o nome a ser cadastrado: "); //Nome
+		printf("Digite o nome a ser cadastrado: \n "); //Nome
 		scanf("%s", nome);
         file = fopen(arquivo, "a");
 		fprintf(file,nome);
@@ -36,7 +36,7 @@ int registrar() //função responsavel por cadastrar
     		fprintf(file,",");
     		fclose(file);
 		
-		printf("Digite o sobrenome a ser cadastrado: "); // Sobrenome
+		printf("Digite o sobrenome a ser cadastrado: \n "); // Sobrenome
 		scanf("%s", sobrenome);
 		file = fopen(arquivo, "a");
 		fprintf(file,sobrenome);
@@ -45,7 +45,7 @@ int registrar() //função responsavel por cadastrar
 	    	fprintf(file,",");
 	    	fclose(file);
 		
-		printf("Digite o cargo a ser cadastrado: ");// Cargo
+		printf("Digite o cargo a ser cadastrado: \n ");// Cargo
 		scanf("%s", cargo);
 		file = fopen(arquivo, "a");
 		fprintf(file,cargo);
@@ -60,27 +60,32 @@ int consultar()
 {
 	setlocale(LC_ALL, "Portuguese"); // Idioma usado
    
-    char cpf[40];
-    char conteudo[200];
+    char cpf[40]; //variavel CPF
+    char conteudo[200];//variavel conteudo
+
     
     printf("Digite o CPF a ser consultado: "); // Consulta CPF.
     scanf("%s",cpf);
     
     FILE *file;
-    file = fopen(cpf,"r");// "r" le o arquivo
+    file = fopen(cpf,"r");// fopen abre o aquivo e "r" le o arquivo
     
-    if(file == NULL)// compara o arquivo
+    
+    if(file == NULL) //if=se o arquivo for nulo
 {
-    printf("Não foi possivel abrir o arquivo, não localizado!\n"); //CPF Não localizado.
+    printf("Não foi possivel consultar o CPF desejado!\n"); //CPF Não localizado.
 }
     
-    while (fgets(conteudo, 200, file) != NULL)
+    while (fgets(conteudo, 200, file) != NULL)//!= diferente de nulo
+
 {
-    	printf("\nEssas são as informações do usuário: "); //Informações para o usuário.
+    	printf("\nEssas são as informações do usuário:\n\n "); //Informações para o usuário.
     	printf("%s", conteudo);
-    	printf("\n\n");
-		
+    	printf("\n");
+    	printf("CPF:\n");
+		break;
 }
+    
 	system("pause");
 	fclose(file);
 }
@@ -133,9 +138,11 @@ int main(){
 	
       	printf("\t2 - Consultar nomes.\n");
    	
-    	printf("\t3 - Deletar nomes.\n\n");	
+    	printf("\t3 - Deletar nomes.\n");	
+    	
+    	printf("\t4 - Sair do sistema.\n\n");
 	
-    	printf("Escolha uma das opções acima: "); //fim do menu
+    	printf("Escolha uma das opções acima: \n"); //fim do menu
     
     scanf("%d", &opcao); //armazenando escolha do usuario
  	
@@ -153,6 +160,11 @@ int main(){
 	        	
 	        case 3:
 			deletar();
+            break;
+            
+            case 4:
+            printf("Obrigado por utilizar o sistema!\n");
+            return 0;
             break;
             
 			default:
